@@ -1,29 +1,56 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 $(function () {
-  // TODO: Add a listener for click events on the save button. This code should
-  // use the id in the containing time-block as a key to save the user input in
-  // local storage. HINT: What does `this` reference in the click listener
-  // function? How can DOM traversal be used to get the "hour-x" id of the
-  // time-block containing the button that was clicked? How might the id be
-  // useful when saving the description in local storage?
 
-  $(document).on("click", ".saveBtn", function () {
-    var time = $(this).parent().attr("id");
-    const description = $(this).parent().find(".description").val();
+  // button click event listener
+  $(".saveBtn").on("click", function () {
+    // get the id of the parent time-block
+    const id = $(this).parent().attr("id");
+    // get the value of the description textarea
+    const description = $(this).siblings(".description").val();
+    // save the description in local storage
     localStorage.setItem(id, description);
+
+    // add a message into HTML file to show that there was a change made to local storage
+    $("#message").text("Your changes were saved!");
   });
 
-  // TODO: Add code to apply the past, present, or future class to each time
-  // block by comparing the id to the current hour. HINTS: How can the id
-  // attribute of each time-block be used to conditionally add or remove the
-  // past, present, and future classes? How can Day.js be used to get the
-  // current hour in 24-hour time?
 
-  // TODO: Add code to get any user input that was saved in localStorage and set
-  // the values of the corresponding textarea elements. HINT: How can the id
-  // attribute of each time-block be used to do this?
-  //
-  // TODO: Add code to display the current date in the header of the page.
+  // get the current hour in 24-hour time
+  const currentHour = dayjs().hour();
+  // loop through each time-block
+  $(".time-block").each(function () {
+    // get the id of the time-block
+    const id = $(this).attr("id");
+    // get the hour from the id
+    const hour = parseInt(id.split("-")[1]);
+    // compare the hour to the current hour
+    if (hour < currentHour) {
+      // add the past class
+      $(this).addClass("past");
+    } else if (hour === currentHour) {
+      // add the present class
+      $(this).addClass("present");
+    } else {
+      // add the future class
+      $(this).addClass("future");
+    }
+  });
+  
+
+  // loop through each item in local storage
+  $.each(localStorage, function (key, value) {
+    // get the time-block with the id of the key
+    const timeBlock = $("#" + key);
+    // if the time-block exists
+    if (timeBlock.length) {
+      // set the value of the description textarea
+      timeBlock.find(".description").val(value);
+    }
+  });
+
+
+  // Used Day.js to get the current date in the format YYYY-MM-DD
+  const currentDate = dayjs().format("dddd, MMMM D, YYYY");
+  // Set the text of the currentDay element to the current date
+  $("#currentDay").text(currentDate);
+
 });
