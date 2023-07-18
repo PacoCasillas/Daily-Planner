@@ -17,7 +17,9 @@ This is a simple daily planner to help you with your workday
 
 ## Installation
 
-To use this application you will want to download the repo into your coputer by cloning or zip file. Then you will want to open it on VS code and open the html file by using something like live server
+To use this application you will want to download the repo into your coputer by cloning or zip file. Then you will want to open it on VS code and open the html file by using something like live server, or it can be accessed by using the link below
+
+https://pacocasillas.github.io/Daily-Planner/
 
 ## Usage
 
