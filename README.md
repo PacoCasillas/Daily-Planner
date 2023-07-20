@@ -24,13 +24,13 @@ To use this application you will want to download the repo into your coputer by 
 The following images will help guide you through the use of this application:
 
 - When the page is loaded you will be greeted with todays date and the time blocks of a standard working day 
-![](/Daily-Planner/README-images/day-planner-open.png)
+![](/README-images/day-planner-open.png)
 
 - Once something is typed into the time block and the save button is clicked, a message will show up in the blue bar at the top of the page, indicating that there was a change made to local storage, saving the event
-![](/Daily-Planner/README-images/day-planner-save-event.png)
+![](/README-images/day-planner-save-event.png)
 
 - Lastly when the page is refreshed the message at the top will dissapear and the event saved will still be in the block of time, since it was stored in the local storage
-![](/Daily-Planner/README-images/day-planner-refresh.png)
+![](/README-images/day-planner-refresh.png)
 
 ## License
 
